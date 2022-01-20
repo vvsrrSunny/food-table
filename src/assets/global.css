@@ -2,3 +2,64 @@
     font-family: Avenir, Helvetica, Arial, sans-serif;
     color: #2c3e50;
 }
+
+a {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
+h3 {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    background-color: #f2f5f8;
+}
+
+section {
+    flex-direction: column;
+    height: 250px;
+    color: #dddddd;
+}
+
+.dashboard {
+    padding-left: 200px;
+    padding-right: 200px;
+    background-color: #354253;
+    height: 310px;
+}
+
+.dashboard a {
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgb(19, 24, 65);
+    cursor: pointer;
+    color: #f2f5f8;
+    text-decoration: none;
+}
+
+.h3 {
+    display: flex;
+    align-items: center;
+}
+
+.section-heading {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-size: larger;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #009879;
+    cursor: pointer;
+    color: #f2f5f8;
+    height: 0px;
+    display: flex;
+    align-items: center;
+    font-size: medium;
+}
