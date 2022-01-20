@@ -44,6 +44,9 @@ section {
   text-decoration: none;
 }
 
+.header-button:hover {
+  opacity: 75%;
+}
 .section-heading {
   padding-top: 20px;
   padding-bottom: 10px;
@@ -64,5 +67,9 @@ button {
   align-items: center;
   font-size: medium;
    border: 0px;
+}
+
+button:hover {
+  opacity: 75%;
 }
 </style>
