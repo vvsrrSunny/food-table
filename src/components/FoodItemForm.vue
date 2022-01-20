@@ -29,7 +29,7 @@
       v-model="this.foodItem.topping"
     />
     <p style="color: red" v-show="showFieldsRequire">
-      All fields are required.
+      {{ error }}
     </p>
   </form-layout>
 </template>
@@ -50,41 +50,70 @@ export default {
       foodItem: this.defaultObject(),
       showFieldsRequire: false,
       foodItemCreatedSuccess: false,
+      error: "All fields are required.",
     };
   },
 
   methods: {
     createClicked() {
       if (this.foodItem.id.toString().trim() == "") {
-        this.showFieldsRequire = true;
-
+        this.setErrorMessage();
         return;
       }
 
       if (this.foodItem.type.trim() == "") {
-        this.showFieldsRequire = true;
+        this.setErrorMessage();
 
         return;
       }
 
       if (this.foodItem.name.trim() == "") {
-        this.showFieldsRequire = true;
+        this.setErrorMessage();
 
         return;
       }
 
       if (this.foodItem.topping.trim() == "") {
-        this.showFieldsRequire = true;
+        this.setErrorMessage();
+
+        return;
+      }
+
+      this.specialCharTest();
+    },
+    specialCharTest() {
+      let format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
+      if (format.test(this.foodItem.id.toString().trim())) {
+        this.setErrorMessage("Please remove special character");
+
+        return;
+      }
+      if (format.test(this.foodItem.type.trim())) {
+        this.setErrorMessage("Please remove special character");
+
+        return;
+      }
+      if (format.test(this.foodItem.name.trim())) {
+        this.setErrorMessage("Please remove special character");
+
+        return;
+      }
+      if (format.test(this.foodItem.topping.trim())) {
+        this.setErrorMessage("Please remove special character");
 
         return;
       }
 
       this.creatingWithDelay();
     },
-
+    setErrorMessage(message = "All fields are required.") {
+      this.error = message;
+      this.showFieldsRequire = true;
+    },
     creatingWithDelay() {
       this.foodItemCreatedSuccess = true;
-
+      this.showFieldsRequire = false;
       setTimeout(() => {
         this.$emit("create-food-item", this.foodItem);
       }, 1000);
