@@ -33,6 +33,7 @@
       </tr>
     </template>
     <template v-slot:body>
+      <p v-show="foodItems.length == 0">No Results Found</p>
       <tr v-for="(foodItem, index) in foodItems" :key="index">
         <td>{{ parseInt(foodItem.id) }}</td>
         <td>{{ foodItem.type }}</td>
@@ -94,7 +95,7 @@ export default {
 
       this.sortCounter = 2;
 
-      this.sortByColumn(this.currentSortedColumn, 'only_remove_sort');
+      this.sortByColumn(this.currentSortedColumn, "only_remove_sort");
     },
 
     addFoodItem(foodItem) {
