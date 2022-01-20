@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="main-content">
-      <food-table :foodItemList="foodItemList" />
-    </div>
+      <div class="main-content">
+        <food-table :foodItemList="foodItemList" />
+      </div>
   </div>
 </template>
 

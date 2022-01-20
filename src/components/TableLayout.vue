@@ -14,7 +14,7 @@
   min-width: 100%;
 }
 .styled-table thead tr {
-  background-color: #354253;
+  background-color: #1F2937;
   color: #ffffff;
   text-align: left;
 }

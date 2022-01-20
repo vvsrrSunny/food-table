@@ -3,13 +3,13 @@
     <template v-slot:heading>
       <tr>
         <th>Id</th>
-        <th>Type</th>
+        <th @click="sortBy('topping')">Type</th>
         <th>Name</th>
         <th>Topping</th>
       </tr>
     </template>
     <template v-slot:body>
-      <tr v-for="(foodItem, index) in foodItemList" :key="index">
+      <tr v-for="(foodItem, index) in foodItems" :key="index">
         <td>{{ parseInt(foodItem.id, 8) }}</td>
         <td>{{ foodItem.type }}</td>
         <td>{{ foodItem.name }}</td>
@@ -30,6 +30,27 @@ export default {
     foodItemList: {
       type: Array,
       default: [],
+    },
+  },
+  data() {
+    return {
+      foodItems: this.foodItemList,
+    };
+  },
+
+  methods: {
+    sortBy(columnName) {
+      console.debug;
+      this.foodItems.sort(function (a, b) {
+        if (a.topping < b.topping) {
+          return -1;
+        }
+        if (a.topping > b.topping) {
+          return 1;
+        }
+        return 0;
+      });
+      console.log(this.foodItems);
     },
   },
 };
