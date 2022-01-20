@@ -10,7 +10,7 @@
 </template>
 <script>
 export default {
-  emits: ["input-value"],
+  emits: ["update:modelValue"],
 
   props: {
     id: {
@@ -31,16 +31,24 @@ export default {
       type: String,
       default: "text",
     },
+
+    modelValue: {
+      type: String,
+      default: "",
+    },
   },
   data() {
     return {
-      inputVal: "",
-      modelValue:"",
+      inputVal: this.modelValue,
     };
   },
   watch: {
     inputVal() {
-      this.$emit("input-value", this.inputVal);
+      this.$emit("update:modelValue", this.inputVal);
+    },
+
+    modelValue() {
+      this.inputVal = this.modelValue;
     },
   },
 };

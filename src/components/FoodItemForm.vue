@@ -7,26 +7,26 @@
       id="id"
       name="id"
       placeholder="Id"
-      @input-value="foodId"
+      v-model="this.foodItem.id"
       type="number"
     />
     <the-input
       id="type"
       name="type"
       placeholder="Type"
-      @input-value="foodType"
+      v-model="this.foodItem.type"
     />
     <the-input
       id="name"
       name="name"
       placeholder="Name"
-      @input-value="foodName"
+      v-model="this.foodItem.name"
     />
     <the-input
       id="topping"
       name="topping"
       placeholder="Topping"
-      @input-value="foodTopping"
+      v-model="this.foodItem.topping"
     />
   </form-layout>
 </template>
@@ -55,22 +55,6 @@ export default {
     },
     foodItemToDefault() {
       this.foodItem = this.defaultObject();
-    },
-
-    foodType(type) {
-      this.foodItem.type = type;
-    },
-
-    foodName(name) {
-      this.foodItem.name = name;
-    },
-
-    foodTopping(topping) {
-      this.foodItem.topping = topping;
-    },
-
-    foodId(id) {
-      this.foodItem.id = parseInt(id);
     },
 
     defaultObject() {

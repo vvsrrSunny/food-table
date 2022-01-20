@@ -1,9 +1,5 @@
 <template>
-  <div
-    v-show="show"
-    class="backdrop"
-    @click.self="closePrompt"
-  >
+  <div v-show="show" class="backdrop" @click.self="closePrompt">
     <div class="model">
       <slot />
     </div>
@@ -23,6 +19,8 @@ export default {
     },
 
     closePrompt() {
+      this.$emit("clear-form");
+
       this.close();
     },
 

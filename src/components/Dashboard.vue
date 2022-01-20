@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="main-content">
-      <prompt-layout ref="prompt">
-        <food-item-form
+      <prompt-layout ref="prompt" @clear-form="clearForm">
+        <food-item-form ref="foodItemForm"
           @form-cancel-click="closePrompts"
           @create-food-item="addFoodItem"
         />
@@ -327,10 +327,15 @@ export default {
     };
   },
   methods: {
+    clearForm() {
+      this.$refs.foodItemForm.foodItemToDefault();
+    },
     addFoodItem(foodItem) {
       this.foodItemList.push(foodItem);
 
       this.$refs.foodTable.addFoodItem(foodItem);
+
+      this.closePrompts();
     },
     createFoodItem() {
       this.$refs.prompt.openPrompt();
