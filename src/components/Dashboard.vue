@@ -2,7 +2,7 @@
   <div>
     <div class="main-content">
       <prompt-layout ref="prompt">
-        <food-item-form />
+        <food-item-form @form-cancel-click="closePrompts"/>
       </prompt-layout>
 
       <the-search @searchValue="setSearch" />

@@ -1,6 +1,6 @@
 <template>
   <div class="form-con">
-    <form>
+    <div>
       <slot />
       <div class="btn-group">
         <button @click="$emit('cancel-clicked')" style="margin-right: 25px">
@@ -10,7 +10,7 @@
           Add Item
         </button>
       </div>
-    </form>
+    </div>
   </div>
 </template>
 

@@ -5,10 +5,13 @@
     :id="id"
     :name="name"
     :placeholder="placeholder"
+    v-model="inputVal"
   />
 </template>
 <script>
 export default {
+  emits: ["input-value"],
+
   props: {
     id: {
       type: String,
@@ -27,6 +30,17 @@ export default {
     type: {
       type: String,
       default: "text",
+    },
+  },
+  data() {
+    return {
+      inputVal: "",
+      modelValue:"",
+    };
+  },
+  watch: {
+    inputVal() {
+      this.$emit("input-value", this.inputVal);
     },
   },
 };
