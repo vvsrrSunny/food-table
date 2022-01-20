@@ -2,10 +2,10 @@
   <table-layout>
     <template v-slot:heading>
       <tr>
-        <th>Id</th>
-        <th @click="sortBy('topping')">Type</th>
-        <th>Name</th>
-        <th>Topping</th>
+        <th @click="sortByColumn('id')">Id</th>
+        <th @click="sortByColumn('type')">Type</th>
+        <th @click="sortByColumn('name')">Name</th>
+        <th @click="sortByColumn('topping')">Topping</th>
       </tr>
     </template>
     <template v-slot:body>
@@ -34,23 +34,71 @@ export default {
   },
   data() {
     return {
-      foodItems: this.foodItemList,
+      foodItems: Object.values({ ...this.foodItemList }),
+      currentSortedColumn: "",
+      sortCounter: 0,
+      sortTypes: ["noSort", "ascending", "descending"],
     };
   },
 
   methods: {
+    sortByColumn(columnName) {
+      this.setSortCounter(columnName);
+
+      this.currentSortedColumn = columnName;
+
+      this.sortBy(columnName);
+    },
+
     sortBy(columnName) {
-      console.debug;
+      console.log(this.sortCounter);
+      if (this.sortTypes[this.sortCounter] == "noSort") {
+        this.foodItems = Object.values({ ...this.foodItemList });
+
+        return;
+      }
+
+      if (this.sortTypes[this.sortCounter] == "ascending") {
+        this.foodItems.sort(function (a, b) {
+          if (a[columnName] < b[columnName]) {
+            return -1;
+          }
+
+          if (a[columnName] > b[columnName]) {
+            return 1;
+          }
+
+          return 0;
+        });
+
+        return;
+      }
+
       this.foodItems.sort(function (a, b) {
-        if (a.topping < b.topping) {
-          return -1;
-        }
-        if (a.topping > b.topping) {
+        if (a[columnName] < b[columnName]) {
           return 1;
         }
+
+        if (a[columnName] > b[columnName]) {
+          return -1;
+        }
+
         return 0;
       });
-      console.log(this.foodItems);
+    },
+
+    setSortCounter(columnName) {
+      this.sortCounter++;
+      
+      if (this.currentSortedColumn == columnName) {
+        if (this.sortCounter >= 3) {
+          this.sortCounter = 0;
+        }
+
+        return;
+      }
+
+      this.sortCounter = 1;
     },
   },
 };
