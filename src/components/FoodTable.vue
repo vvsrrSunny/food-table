@@ -2,10 +2,12 @@
   <table-layout>
     <template v-slot:heading>
       <tr>
-        <th @click="sortByColumn('id')">Id</th>
-        <th @click="sortByColumn('type')">Type</th>
-        <th @click="sortByColumn('name')">Name</th>
-        <th @click="sortByColumn('topping')">Topping</th>
+        <table-head-cell @click="sortByColumn('id')">Id</table-head-cell>
+        <table-head-cell @click="sortByColumn('type')">Type</table-head-cell>
+        <table-head-cell @click="sortByColumn('name')">Name</table-head-cell>
+        <table-head-cell @click="sortByColumn('topping')"
+          >Topping</table-head-cell
+        >
       </tr>
     </template>
     <template v-slot:body>
@@ -20,10 +22,12 @@
 </template>
 <script>
 import TableLayout from "./TableLayout.vue";
+import TableHeadCell from "./TableHeadCell.vue";
 
 export default {
   components: {
     TableLayout,
+    TableHeadCell,
   },
 
   props: {
@@ -32,6 +36,7 @@ export default {
       default: [],
     },
   },
+
   data() {
     return {
       foodItems: Object.values({ ...this.foodItemList }),
@@ -89,7 +94,7 @@ export default {
 
     setSortCounter(columnName) {
       this.sortCounter++;
-      
+
       if (this.currentSortedColumn == columnName) {
         if (this.sortCounter >= 3) {
           this.sortCounter = 0;
