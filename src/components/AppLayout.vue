@@ -2,12 +2,14 @@
   <div class="dashboard">
     <section>
       <div style="padding-top: 30px; padding-bottom: 20px">
-        <a href="https://www.megaport.com/" target="_blank">Megaport</a>
+        <a class="header-button" href="https://www.megaport.com/" target="_blank">Megaport</a>
       </div>
       <hr />
       <div class="section-heading">
         <h3>Megaport Menu</h3>
-        <button @click="$emit('create-food-item')">Add Item</button>
+        <button class="main button" @click="$emit('create-food-item')">
+          Add Item
+        </button>
       </div>
     </section>
     <slot />
@@ -33,7 +35,7 @@ section {
   height: 310px;
 }
 
-.dashboard a {
+.header-button {
   border-radius: 10px;
   padding: 10px;
   background-color: rgb(43, 68, 209);
@@ -61,5 +63,6 @@ button {
   display: flex;
   align-items: center;
   font-size: medium;
+   border: 0px;
 }
 </style>

@@ -80,6 +80,7 @@ export default {
   position: relative;
   margin-top: -6px;
   margin-left: -10px;
+  z-index: 0;
 }
 .arrows > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;

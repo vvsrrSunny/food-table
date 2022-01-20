@@ -1,38 +1,10 @@
 <template>
   <div>
     <div class="main-content">
-      <model ref="prompt">
-        <div class="form-con">
-          <form action="action_page.php">
-            <input
-              class="input-box"
-              type="text"
-              id="type"
-              name="type"
-              placeholder="Type"
-            />
-            <input
-              class="input-box"
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Name"
-            />
-            <input
-              class="input-box"
-              type="text"
-              id="topping"
-              name="topping"
-              placeholder="Topping"
-            />
-            <div class="btn-group">
-              <button style="margin-right: 25px">Cancel</button>
-              <button style="margin-right: 25px">Add Item</button>
-            </div>
-          </form>
-        </div>
-      </model>
-      
+      <prompt-layout ref="prompt">
+        <food-item-form />
+      </prompt-layout>
+
       <the-search @searchValue="setSearch" />
 
       <food-table :search="search" :foodItemList="foodItemList" />
@@ -42,13 +14,15 @@
 
 <script>
 import FoodTable from "./FoodTable.vue";
-import Model from "./Model.vue";
+import PromptLayout from "./PromptLayout.vue";
 import TheSearch from "./TheSearch.vue";
+import FoodItemForm from "./FoodItemForm.vue";
 export default {
   components: {
     FoodTable,
-    Model,
+    PromptLayout,
     TheSearch,
+    FoodItemForm,
   },
   data() {
     return {
@@ -367,35 +341,5 @@ export default {
   border-radius: 7px;
   padding: 25px;
   padding-top: 3px;
-}
-
-.btn-group {
-  display: flex;
-  margin-right: 25px;
-}
-.input-box {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  resize: vertical;
-}
-
-.input-btn {
-  background-color: #04aa6d;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.form-con {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
 }
 </style>
