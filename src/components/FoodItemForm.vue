@@ -1,5 +1,8 @@
 <template>
-  <form-layout @cancel-clicked="$emit('form-cancel-click')">
+  <form-layout
+    @cancel-clicked="cancelClicked"
+    @create-clicked="$emit('create-food-item', foodItem)"
+  >
     <the-input
       id="id"
       name="id"
@@ -36,6 +39,9 @@ export default {
     TheInput,
     FormLayout,
   },
+
+  emits: ["form-cancel-click", "create-food-item"],
+
   data() {
     return {
       foodItem: this.defaultObject(),
@@ -43,6 +49,14 @@ export default {
   },
 
   methods: {
+    cancelClicked() {
+      this.$emit("form-cancel-click");
+      this.foodItemToDefault();
+    },
+    foodItemToDefault() {
+      this.foodItem = this.defaultObject();
+    },
+
     foodType(type) {
       this.foodItem.type = type;
     },
@@ -56,7 +70,7 @@ export default {
     },
 
     foodId(id) {
-      this.foodItem.id = parseInt(id, 10).toString(8);
+      this.foodItem.id = parseInt(id);
     },
 
     defaultObject() {

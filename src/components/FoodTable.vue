@@ -34,7 +34,7 @@
     </template>
     <template v-slot:body>
       <tr v-for="(foodItem, index) in foodItems" :key="index">
-        <td>{{ parseInt(foodItem.id, 8) }}</td>
+        <td>{{ parseInt(foodItem.id) }}</td>
         <td>{{ foodItem.type }}</td>
         <td>{{ foodItem.name }}</td>
         <td>{{ foodItem.topping }}</td>
@@ -84,6 +84,10 @@ export default {
   },
 
   methods: {
+    addFoodItem(foodItem) {
+      this.foodItems.push(foodItem);
+    },
+
     filterBySearch() {
       if (this.searchVal == "") {
         this.foodItems = [...this.foodItemList];

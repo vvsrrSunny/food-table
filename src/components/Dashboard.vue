@@ -2,12 +2,19 @@
   <div>
     <div class="main-content">
       <prompt-layout ref="prompt">
-        <food-item-form @form-cancel-click="closePrompts"/>
+        <food-item-form
+          @form-cancel-click="closePrompts"
+          @create-food-item="addFoodItem"
+        />
       </prompt-layout>
 
       <the-search @searchValue="setSearch" />
 
-      <food-table :search="search" :foodItemList="foodItemList" />
+      <food-table
+        ref="foodTable"
+        :search="search"
+        :foodItemList="foodItemList"
+      />
     </div>
   </div>
 </template>
@@ -320,6 +327,11 @@ export default {
     };
   },
   methods: {
+    addFoodItem(foodItem) {
+      this.foodItemList.push(foodItem);
+
+      this.$refs.foodTable.addFoodItem(foodItem);
+    },
     createFoodItem() {
       this.$refs.prompt.openPrompt();
     },
