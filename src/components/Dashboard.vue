@@ -1,19 +1,32 @@
 <template>
   <div>
-      <div class="main-content">
-        <food-table :foodItemList="foodItemList" />
+    <div class="main-content">
+      <model ref="prompt"> <p>dfdfdsdf</p></model>
+      <div class="search-box">
+        {{ search }}
+        <input
+          id="searchbox"
+          type="text"
+          placeholder="Search"
+          v-model="search"
+        />
       </div>
+      <food-table :foodItemList="foodItemList" />
+    </div>
   </div>
 </template>
 
 <script>
 import FoodTable from "./FoodTable.vue";
+import Model from "./Model.vue";
 export default {
   components: {
     FoodTable,
+    Model,
   },
   data() {
     return {
+      search: "",
       foodItemList: [
         {
           id: "0001",
@@ -306,6 +319,12 @@ export default {
       ],
     };
   },
+  methods: {
+    createFoodItem() {
+      console.log("createFoodItem clicked");
+      this.$refs.prompt.openPrompt();
+    },
+  },
 };
 </script>
 
@@ -317,5 +336,15 @@ export default {
   margin-top: -40px;
   border-radius: 7px;
   padding: 25px;
+}
+
+#searchbox {
+  height: 20px;
+  font-size: 14pt;
+  padding: 5px;
+}
+.search-box {
+  float: right;
+  padding: 5px;
 }
 </style>

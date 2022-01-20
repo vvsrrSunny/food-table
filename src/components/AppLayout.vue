@@ -7,12 +7,17 @@
       <hr />
       <div class="section-heading">
         <h3>Megaport Menu</h3>
-        <button>Add Item</button>
+        <button @click="$emit('create-food-item')">Add Item</button>
       </div>
     </section>
     <slot />
   </div>
 </template>
+<script>
+export default {
+  emits: ["create-food-item"],
+};
+</script>
 
 <style>
 section {
