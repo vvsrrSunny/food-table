@@ -69,28 +69,50 @@ export default {
       currentSortedColumn: "",
       sortCounter: 0,
       sortTypes: ["noSort", "ascending", "descending"],
-      searchToFilter:"",
+      searchVal: "",
     };
   },
 
-watch: {
-  search(val) {
-    val = val.trim();
+  watch: {
+    search(val) {
+      val = val.trim();
 
-    searchToFilter = val;
+      this.searchVal = val;
 
-    this.filterBySearch();
-  }
-},
+      this.filterBySearch();
+    },
+  },
 
   methods: {
     filterBySearch() {
-      if (this.sortTypes[this.sortCounter] == "noSort") {
+      if (this.searchVal == "") {
         this.foodItems = [...this.foodItemList];
 
         return;
       }
+
+      this.foodItems = this.foodItemList.filter((row) => {
+        const search = this.searchVal.toLowerCase();
+        const name = row.name.toLowerCase();
+        const type = row.type.toLowerCase();
+        const topping = row.topping.toLowerCase();
+
+        if (name.indexOf(search) == 0) {
+          return true;
+        }
+
+        if (type.indexOf(search) == 0) {
+          return true;
+        }
+
+        if (topping.indexOf(search) == 0) {
+          return true;
+        }
+
+        return false;
+      });
     },
+
     sortByColumn(columnName) {
       this.setSortCounter(columnName);
 
@@ -100,7 +122,6 @@ watch: {
     },
 
     sortBy(columnName) {
-      console.log(this.sortCounter);
       if (this.sortTypes[this.sortCounter] == "noSort") {
         this.foodItems = [...this.foodItemList];
 
