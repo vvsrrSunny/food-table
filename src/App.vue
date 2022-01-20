@@ -1,6 +1,6 @@
 <template>
   <app-layout @createFoodItem="createClicked" 
-    @keydown.esc="clearPrompts">
+    @keydown.esc="closePrompts">
     <dashboard ref="dashboard"/>
   </app-layout>
 </template>
@@ -18,9 +18,9 @@ export default {
     createClicked() {
       this.$refs.dashboard.createFoodItem();
     },
-    // clearPrompts() {
-    //   this.$refs.prompt.
-    // }
+    closePrompts() {
+      this.$refs.dashboard.closePrompts();
+    }
 
   },
 };

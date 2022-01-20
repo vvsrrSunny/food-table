@@ -61,7 +61,7 @@ export default {
 
   data() {
     return {
-      foodItems: Object.values({ ...this.foodItemList }),
+      foodItems: [...this.foodItemList],
       currentSortedColumn: "",
       sortCounter: 0,
       sortTypes: ["noSort", "ascending", "descending"],
@@ -80,7 +80,7 @@ export default {
     sortBy(columnName) {
       console.log(this.sortCounter);
       if (this.sortTypes[this.sortCounter] == "noSort") {
-        this.foodItems = Object.values({ ...this.foodItemList });
+        this.foodItems = [...this.foodItemList];
 
         return;
       }

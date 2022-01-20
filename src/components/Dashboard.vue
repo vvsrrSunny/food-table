@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="main-content">
-      <model ref="prompt"> <p>dfdfdsdf</p></model>
+      <model ref="prompt"> <p>dfdfdsdf</p> </model>
       <div class="search-box">
         {{ search }}
         <input
@@ -321,8 +321,10 @@ export default {
   },
   methods: {
     createFoodItem() {
-      console.log("createFoodItem clicked");
       this.$refs.prompt.openPrompt();
+    },
+    closePrompts() {
+      this.$refs.prompt.closePrompt();
     },
   },
 };

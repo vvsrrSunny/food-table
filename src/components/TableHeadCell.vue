@@ -12,12 +12,10 @@
 </template>
 
 <script>
-import UpArrow from "./UpArrow.vue";
 import DownArrow from "./DownArrow.vue";
 
 export default {
   components: {
-    UpArrow,
     DownArrow,
   },
 
