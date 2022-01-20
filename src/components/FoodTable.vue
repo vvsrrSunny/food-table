@@ -88,10 +88,13 @@ export default {
       if (this.currentSortedColumn == "") {
         return;
       }
+      if (this.sortCounter == 0) {
+        return;
+      }
 
       this.sortCounter = 2;
 
-      this.sortByColumn(this.currentSortedColumn);
+      this.sortByColumn(this.currentSortedColumn, 'only_remove_sort');
     },
 
     addFoodItem(foodItem) {

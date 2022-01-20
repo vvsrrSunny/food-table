@@ -9,7 +9,11 @@
         />
       </prompt-layout>
 
-      <the-search ref="search" @searchValue="setSearch" />
+      <the-search
+        ref="search"
+        @searchValue="setSearch"
+        @remove-sort="removeSort"
+      />
 
       <food-table
         ref="foodTable"

@@ -8,7 +8,12 @@ export default {
     },
 
     methods: {
-        sortByColumn(columnName) {
+        sortByColumn(columnName, sortReason = null) {
+            console.log(sortReason);
+            if (sortReason != "only_remove_sort") {
+                this.$emit('remove-search');
+            }
+
             this.setSortCounter(columnName);
 
             this.currentSortedColumn = columnName;

@@ -17,6 +17,7 @@ export default {
   watch: {
     search() {
       this.$emit("search-value", this.search);
+      this.$emit("remove-sort");
     },
   },
 };
