@@ -32,15 +32,9 @@
           </form>
         </div>
       </model>
-      <div class="search-box">
-        {{ search }}
-        <input
-          id="searchbox"
-          type="text"
-          placeholder="Search"
-          v-model="search"
-        />
-      </div>
+      
+      <the-search @searchValue="setSearch" />
+
       <food-table :search="search" :foodItemList="foodItemList" />
     </div>
   </div>
@@ -49,10 +43,12 @@
 <script>
 import FoodTable from "./FoodTable.vue";
 import Model from "./Model.vue";
+import TheSearch from "./TheSearch.vue";
 export default {
   components: {
     FoodTable,
     Model,
+    TheSearch,
   },
   data() {
     return {
@@ -356,28 +352,21 @@ export default {
     closePrompts() {
       this.$refs.prompt.closePrompt();
     },
+
+    setSearch(search) {
+      this.search = search;
+    },
   },
 };
 </script>
 
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 .main-content {
   background-color: white;
   margin-top: -40px;
   border-radius: 7px;
   padding: 25px;
-}
-
-#searchbox {
-  height: 20px;
-  font-size: 14pt;
-  padding: 5px;
-}
-.search-box {
-  float: right;
-  padding: 5px;
+  padding-top: 3px;
 }
 
 .btn-group {
