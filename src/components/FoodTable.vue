@@ -57,6 +57,10 @@ export default {
       type: Array,
       default: [],
     },
+    search: {
+      type: String,
+      default: "",
+    },
   },
 
   data() {
@@ -65,10 +69,28 @@ export default {
       currentSortedColumn: "",
       sortCounter: 0,
       sortTypes: ["noSort", "ascending", "descending"],
+      searchToFilter:"",
     };
   },
 
+watch: {
+  search(val) {
+    val = val.trim();
+
+    searchToFilter = val;
+
+    this.filterBySearch();
+  }
+},
+
   methods: {
+    filterBySearch() {
+      if (this.sortTypes[this.sortCounter] == "noSort") {
+        this.foodItems = [...this.foodItemList];
+
+        return;
+      }
+    },
     sortByColumn(columnName) {
       this.setSortCounter(columnName);
 
