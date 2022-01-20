@@ -1,8 +1,8 @@
 <template>
-  <form-layout
-    @cancel-clicked="cancelClicked"
-    @create-clicked="$emit('create-food-item', foodItem)"
-  >
+  <form-layout @cancel-clicked="cancelClicked" @create-clicked="createClicked">
+    <p style="color: green" v-show="foodItemCreatedSuccess">
+      Food Item added successfully!
+    </p>
     <the-input
       id="id"
       name="id"
@@ -28,6 +28,9 @@
       placeholder="Topping"
       v-model="this.foodItem.topping"
     />
+    <p style="color: red" v-show="showFieldsRequire">
+      All fields are required.
+    </p>
   </form-layout>
 </template>
 
@@ -45,16 +48,58 @@ export default {
   data() {
     return {
       foodItem: this.defaultObject(),
+      showFieldsRequire: false,
+      foodItemCreatedSuccess: false,
     };
   },
 
   methods: {
+    createClicked() {
+      if (this.foodItem.id.toString().trim() == "") {
+        this.showFieldsRequire = true;
+
+        return;
+      }
+
+      if (this.foodItem.type.trim() == "") {
+        this.showFieldsRequire = true;
+
+        return;
+      }
+
+      if (this.foodItem.name.trim() == "") {
+        this.showFieldsRequire = true;
+
+        return;
+      }
+
+      if (this.foodItem.topping.trim() == "") {
+        this.showFieldsRequire = true;
+
+        return;
+      }
+
+      this.creatingWithDelay();
+    },
+
+    creatingWithDelay() {
+      this.foodItemCreatedSuccess = true;
+
+      setTimeout(() => {
+        this.$emit("create-food-item", this.foodItem);
+      }, 1000);
+    },
+
     cancelClicked() {
       this.$emit("form-cancel-click");
+
       this.foodItemToDefault();
     },
     foodItemToDefault() {
       this.foodItem = this.defaultObject();
+
+      this.showFieldsRequire = false;
+      this.foodItemCreatedSuccess = false;
     },
 
     defaultObject() {
