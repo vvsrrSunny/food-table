@@ -2,10 +2,32 @@
   <table-layout>
     <template v-slot:heading>
       <tr>
-        <table-head-cell @click="sortByColumn('id')">Id</table-head-cell>
-        <table-head-cell @click="sortByColumn('type')">Type</table-head-cell>
-        <table-head-cell @click="sortByColumn('name')">Name</table-head-cell>
-        <table-head-cell @click="sortByColumn('topping')"
+        <table-head-cell
+          columnName="id"
+          :sortType="sortTypes[sortCounter]"
+          :currentSortedColumn="currentSortedColumn"
+          @click="sortByColumn('id')"
+          >Id</table-head-cell
+        >
+        <table-head-cell
+          columnName="type"
+          :sortType="sortTypes[sortCounter]"
+          :currentSortedColumn="currentSortedColumn"
+          @click="sortByColumn('type')"
+          >Type</table-head-cell
+        >
+        <table-head-cell
+          columnName="name"
+          :sortType="sortTypes[sortCounter]"
+          :currentSortedColumn="currentSortedColumn"
+          @click="sortByColumn('name')"
+          >Name</table-head-cell
+        >
+        <table-head-cell
+          columnName="topping"
+          :sortType="sortTypes[sortCounter]"
+          :currentSortedColumn="currentSortedColumn"
+          @click="sortByColumn('topping')"
           >Topping</table-head-cell
         >
       </tr>
