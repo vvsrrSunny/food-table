@@ -45,12 +45,15 @@
 <script>
 import TableLayout from "./TableLayout.vue";
 import TableHeadCell from "./TableHeadCell.vue";
+import TableSort from "../mixins/table-sort";
 
 export default {
   components: {
     TableLayout,
     TableHeadCell,
   },
+
+  mixins: [TableSort],
 
   props: {
     foodItemList: {
@@ -66,9 +69,6 @@ export default {
   data() {
     return {
       foodItems: [...this.foodItemList],
-      currentSortedColumn: "",
-      sortCounter: 0,
-      sortTypes: ["noSort", "ascending", "descending"],
       searchVal: "",
     };
   },
@@ -113,15 +113,7 @@ export default {
       });
     },
 
-    sortByColumn(columnName) {
-      this.setSortCounter(columnName);
-
-      this.currentSortedColumn = columnName;
-
-      this.sortBy(columnName);
-    },
-
-    sortBy(columnName) {
+    sortBy() {
       if (this.sortTypes[this.sortCounter] == "noSort") {
         this.foodItems = [...this.foodItemList];
 
@@ -129,12 +121,12 @@ export default {
       }
 
       if (this.sortTypes[this.sortCounter] == "ascending") {
-        this.foodItems.sort(function (a, b) {
-          if (a[columnName] < b[columnName]) {
+        this.foodItems.sort((a, b) => {
+          if (a[this.currentSortedColumn] < b[this.currentSortedColumn]) {
             return -1;
           }
 
-          if (a[columnName] > b[columnName]) {
+          if (a[this.currentSortedColumn] > b[this.currentSortedColumn]) {
             return 1;
           }
 
@@ -144,31 +136,17 @@ export default {
         return;
       }
 
-      this.foodItems.sort(function (a, b) {
-        if (a[columnName] < b[columnName]) {
+      this.foodItems.sort((a, b) => {
+        if (a[this.currentSortedColumn] < b[this.currentSortedColumn]) {
           return 1;
         }
 
-        if (a[columnName] > b[columnName]) {
+        if (a[this.currentSortedColumn] > b[this.currentSortedColumn]) {
           return -1;
         }
 
         return 0;
       });
-    },
-
-    setSortCounter(columnName) {
-      this.sortCounter++;
-
-      if (this.currentSortedColumn == columnName) {
-        if (this.sortCounter >= 3) {
-          this.sortCounter = 0;
-        }
-
-        return;
-      }
-
-      this.sortCounter = 1;
     },
   },
 };
