@@ -84,6 +84,16 @@ export default {
   },
 
   methods: {
+    removeSort() {
+      if (this.currentSortedColumn == "") {
+        return;
+      }
+
+      this.sortCounter = 2;
+
+      this.sortByColumn(this.currentSortedColumn);
+    },
+
     addFoodItem(foodItem) {
       this.foodItems.push(foodItem);
     },

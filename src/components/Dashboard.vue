@@ -2,18 +2,20 @@
   <div>
     <div class="main-content">
       <prompt-layout ref="prompt" @clear-form="clearForm">
-        <food-item-form ref="foodItemForm"
+        <food-item-form
+          ref="foodItemForm"
           @form-cancel-click="closePrompts"
           @create-food-item="addFoodItem"
         />
       </prompt-layout>
 
-      <the-search @searchValue="setSearch" />
+      <the-search ref="search" @searchValue="setSearch" />
 
       <food-table
         ref="foodTable"
         :search="search"
         :foodItemList="foodItemList"
+        @remove-search="removeSearch"
       />
     </div>
   </div>
@@ -327,6 +329,14 @@ export default {
     };
   },
   methods: {
+    removeSort() {
+      this.$refs.foodTable.removeSort();
+    },
+
+    removeSearch() {
+      this.$refs.search.search = "";
+    },
+
     clearForm() {
       this.$refs.foodItemForm.foodItemToDefault();
     },

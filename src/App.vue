@@ -1,7 +1,6 @@
 <template>
-  <app-layout @createFoodItem="createClicked" 
-    @keydown.esc="closePrompts">
-    <dashboard ref="dashboard"/>
+  <app-layout @createFoodItem="createClicked" @keydown.esc="closePrompts">
+    <dashboard ref="dashboard" />
   </app-layout>
 </template>
 
@@ -16,12 +15,24 @@ export default {
   },
   methods: {
     createClicked() {
+      this.removeSort();
+
+      this.removeSearch();
+
       this.$refs.dashboard.createFoodItem();
     },
+
+    removeSort() {
+      this.$refs.dashboard.removeSort();
+    },
+
+    removeSearch() {
+      this.$refs.dashboard.removeSearch();
+    },
+
     closePrompts() {
       this.$refs.dashboard.closePrompts();
-    }
-
+    },
   },
 };
 </script>

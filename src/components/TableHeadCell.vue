@@ -60,7 +60,6 @@ export default {
   background: rgb(255, 255, 255);
   height: 12px;
   width: 12px;
-  position: absolute;
 
   -webkit-transform: rotate(180deg);
   -moz-transform: rotate(180deg);
@@ -73,15 +72,8 @@ export default {
   background: rgb(255, 255, 255);
   height: 12px;
   width: 12px;
-  position: absolute;
 }
 
-.arrows {
-  position: relative;
-  margin-top: -6px;
-  margin-left: -10px;
-  z-index: 0;
-}
 .arrows > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.1rem * calc(1 - var(--tw-space-y-reverse)));
