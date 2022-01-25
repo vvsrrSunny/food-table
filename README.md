@@ -4,7 +4,7 @@
 * [Setup](#setup)
 
 ## General info
-The project populates the details of the food items in an interactive table. The UI lets you add a new item to the table with a beautiful pop up. The table can be sorted by column. We can search for the data too. As per the limitations we have used only plain CSS instead of using tailwind CSS etc. 
+The project populates the details of the food items in an interactive table. The UI lets you add a new item to the table with a beautiful pop up. The table can be sorted by column. We can search for the data too. As per the limitations we have completed the project in 3 hours and used only plain CSS instead of using tailwind CSS or Bootstrap. 
 	
 ## Technologies
 Project is created with:
